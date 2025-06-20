@@ -22,15 +22,15 @@ export default function Home() {
           backgroundPosition: "82% 15%",
         }}
       />
-      <div className="absolute inset-0 lg:bg-pink-200 bg-pink-100 opacity-80 lg:opacity-70" />
+      <div className="absolute inset-0 lg:bg-[#fbd8ee] bg-pink-100 opacity-80 lg:opacity-75" />
       {/* Left side cont */}
-      <div className="z-50 absolute lg:left-[10%] top-[10%] lg:top-[25%]  flex items-center justify-center gap-4 p-8 ">
+      <div className="z-40 absolute lg:left-[5%] top-[10%] lg:top-[20%]  flex items-center justify-center gap-4 p-8 ">
         <div className="flex flex-col h-full text-center items-center justify-center">
           <Image src={"/logo.webp"} width={600} height={200} alt="Brand Logo" />
-          <h2 className="text-2xl lg:text-4xl">
+          <h2 className="text-2xl lg:text-3xl">
             Fully Qualified and Insured <br></br> Tint and Brow Stylist
           </h2>
-          <h3 className="text-sm lg:text-xl text-gray-600">
+          <h3 className="text-sm lg:text-lg text-gray-600">
             (Based in Hereford and Presteigne)
           </h3>
           <LinkButton

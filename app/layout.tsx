@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Outfit } from "next/font/google";
+import WebNavbar from "./(components)/WebNavbar";
+import MobileNavbar from "./(components)/MobileNavbar";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -21,7 +23,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.className}`}>{children}</body>
+      <body className={`${outfit.className}`}>
+        <nav className="fixed lg:flex hidden top-0 h-20 left-0 w-screen z-50">
+          <WebNavbar />
+        </nav>
+        <nav className="fixed lg:hidden flex top-0 h-20 left-0 w-screen z-50">
+          <MobileNavbar />
+        </nav>
+
+        {children}
+      </body>
     </html>
   );
 }
