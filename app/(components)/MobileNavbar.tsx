@@ -6,13 +6,20 @@ import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { navLinks } from "./WebNavbar";
-import { FiHome, FiInfo, FiMail, FiBriefcase } from "react-icons/fi";
+import {
+  FiHome,
+  FiInfo,
+  FiMail,
+  FiBriefcase,
+  FiCalendar,
+} from "react-icons/fi";
 
 const iconMap: { [key: string]: JSX.Element } = {
   "/": <FiHome size={24} />,
   "/about": <FiInfo size={24} />,
   "/contact": <FiMail size={24} />,
   "/services": <FiBriefcase size={24} />,
+  "/book": <FiCalendar size={24} />,
 };
 
 const MobileNavbar = () => {

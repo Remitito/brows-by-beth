@@ -6,8 +6,9 @@ import Link from "next/link";
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/book", label: "Book" },
   { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -31,7 +32,7 @@ const WebNavbar = () => {
           <Link
             key={link.href}
             href={link.href}
-            className={`text-lg font-semibold`}
+            className={`text-lg font-semibold hover:text-pink-600 transition-colors duration-300`}
           >
             {link.label}
           </Link>

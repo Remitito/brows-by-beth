@@ -4,46 +4,53 @@ import LinkButton from "./(components)/LinkButton";
 
 export default function Home() {
   return (
-    <div className="relative w-screen justify-center items-center flex h-screen">
-      {/* Background image + overlay */}
+    <div className="relative flex h-screen w-screen lg:items-center justify-center overflow-hidden p-6 lg:justify-start lg:p-0 lg:pl-[5%]">
       <div
-        className="absolute lg:flex hidden inset-0 "
+        className="absolute inset-0 hidden bg-cover lg:block"
         style={{
           backgroundImage: "url('/heroImage.webp')",
-          backgroundSize: "100%",
-          backgroundPosition: "80% 0%",
+          backgroundPosition: "right 30%",
+          backgroundSize: "110%",
         }}
       />
       <div
-        className="absolute flex lg:hidden inset-0 "
+        className="absolute inset-0 block bg-cover bg-center lg:hidden"
         style={{
-          backgroundImage: "url('/heroImage.webp')",
-          backgroundSize: "500%",
-          backgroundPosition: "82% 15%",
+          backgroundImage: "url('/mobileHeroImage.webp')",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
         }}
       />
-      <div className="absolute inset-0 lg:bg-[#fbd8ee] bg-pink-100 opacity-80 lg:opacity-75" />
-      {/* Left side cont */}
-      <div className="z-40 absolute lg:left-[5%] top-[10%] lg:top-[20%]  flex items-center justify-center gap-4 p-8 ">
-        <div className="flex flex-col h-full text-center items-center justify-center">
-          <Image src={"/logo.webp"} width={600} height={200} alt="Brand Logo" />
-          <h2 className="text-2xl lg:text-3xl">
-            Fully Qualified and Insured <br></br> Tint and Brow Stylist
-          </h2>
-          <h3 className="text-sm lg:text-lg text-gray-600">
-            (Based in Hereford and Presteigne)
-          </h3>
-          <LinkButton
-            text="BOOK NOW"
-            url="/book"
-            customClass="sm:flex items-center justify-center hidden mt-6 w-1/2"
+      <a
+        className="lg:hidden block absolute right-4 bottom-4 text-xs text-gray-500 lg:hover:text-gray-700 z-50"
+        href="https://www.pexels.com/photo/woman-with-her-hand-on-her-face-4725426/"
+      >
+        Photo by Polina Tankilevitch
+      </a>
+
+      <div className="absolute inset-0 bg-pink-100 opacity-80 lg:bg-[#fbd8ee] lg:opacity-75" />
+
+      <div className="relative z-10 mt-20 lg:mt-0 flex w-full max-w-md flex-col items-center text-center lg:max-w-lg lg:text-left">
+        <div className="relative w-2/3 lg:h-20 h-12">
+          <Image
+            src="/logo.webp"
+            alt="Brand Logo"
+            fill
+            className="object-fill"
+            priority
           />
         </div>
-        {/* Mobile button */}
+        <h2 className="mt-4 text-xl font-medium leading-tight lg:text-2xl">
+          Fully Qualified and Insured
+          <span className="block">Tint and Brow Stylist</span>
+        </h2>
+        <h3 className=" text-sm text-center text-gray-600">
+          (Based in Hereford and Presteigne)
+        </h3>
         <LinkButton
           text="BOOK NOW"
           url="/book"
-          customClass="sm:hidden flex w-2/3 justify-center items-center absolute top-[150%] "
+          customClass="mt-6 flex w-2/3 max-w-xs items-center justify-center lg:w-1/2 lg:mt-8"
         />
       </div>
     </div>

@@ -15,7 +15,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   return (
     <Link
       href={url}
-      className={`border-black lg:p-4 p-2 font-bold border-3 lg:border-3 text-lg lg:text-xl  sm:hover:text-pink-500 sm:hover:border-pink-500 ${customClass}`}
+      className={`border-black lg:p-3 p-2 font-bold border-[3px] text-lg  transition-colors duration-300 sm:hover:text-pink-600 sm:hover:border-pink-600 ${customClass}`}
     >
       {text.toUpperCase()}
     </Link>
