@@ -58,7 +58,7 @@ const MobileNavbar = () => {
         {!isHomePage ? (
           <Link
             href={"/"}
-            className="z-50 h-full flex justify-center items-center ml-4"
+            className="z-50 h-full flex justify-center items-center pl-4"
           >
             <Image
               src={"/logo.webp"}

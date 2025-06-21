@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 export const navLinks = [
@@ -14,15 +14,22 @@ export const navLinks = [
 
 const WebNavbar = () => {
   const pathname = usePathname();
-
+  const [logoHover, setLogoHover] = useState(false);
   return (
     <div className="flex flex-row justify-between w-full h-full">
       {pathname != "/" ? (
         <Link
           href={"/"}
-          className="h-full flex justify-center items-center ml-4"
+          className="h-full flex justify-center items-center pl-4"
+          onMouseEnter={() => setLogoHover(true)}
+          onMouseLeave={() => setLogoHover(false)}
         >
-          <Image src={"/logo.webp"} height={200} width={200} alt="Brand Logo" />
+          <Image
+            src={logoHover ? "/logoHover.webp" : "/logo.webp"}
+            height={200}
+            width={200}
+            alt="Brand Logo"
+          />
         </Link>
       ) : (
         <div></div>
@@ -32,7 +39,7 @@ const WebNavbar = () => {
           <Link
             key={link.href}
             href={link.href}
-            className={`text-lg font-semibold hover:text-pink-600 transition-colors duration-300`}
+            className={`text-md hover:text-pink-600 transition-colors duration-300`}
           >
             {link.label}
           </Link>

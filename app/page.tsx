@@ -31,7 +31,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-pink-100 opacity-80 lg:bg-[#fbd8ee] lg:opacity-75" />
 
       <div className="relative z-10 mt-20 lg:mt-0 flex w-full max-w-md flex-col items-center text-center lg:max-w-lg lg:text-left">
-        <div className="relative w-2/3 lg:h-20 h-12">
+        <div className="relative w-3/4 lg:h-20 h-16">
           <Image
             src="/logo.webp"
             alt="Brand Logo"
@@ -40,7 +40,7 @@ export default function Home() {
             priority
           />
         </div>
-        <h2 className="mt-4 text-xl font-medium leading-tight lg:text-2xl">
+        <h2 className="mt-4 text-xl font-medium text-center leading-tight lg:text-2xl">
           Fully Qualified and Insured
           <span className="block">Tint and Brow Stylist</span>
         </h2>
