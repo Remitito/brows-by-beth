@@ -53,7 +53,7 @@ const page = () => {
   };
 
   return (
-    <div className="h-full w-5/6 flex flex-col lg:flex-row items-center justify-center">
+    <div className="h-screen w-5/6 mt-20 lg:mt-0 flex flex-col lg:flex-row items-center justify-center">
       <div className="flex justify-center items-center w-full lg:w-1/2">
         <PhotoCircle />
       </div>

@@ -25,7 +25,7 @@ const WebNavbar = () => {
           onMouseLeave={() => setLogoHover(false)}
         >
           <Image
-            src={logoHover ? "/logoHover.webp" : "/logo.webp"}
+            src={logoHover ? "/images/logoHover.webp" : "/images/logo.webp"}
             height={200}
             width={200}
             alt="Brand Logo"
@@ -39,7 +39,9 @@ const WebNavbar = () => {
           <Link
             key={link.href}
             href={link.href}
-            className={`text-md hover:text-pink-600 transition-colors duration-300`}
+            className={`text-md ${
+              pathname == link.href && "text-pink-600 font-bold"
+            } hover:text-pink-600 transition-colors duration-300`}
           >
             {link.label}
           </Link>

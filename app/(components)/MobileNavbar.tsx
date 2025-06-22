@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import React, { JSX, useState } from "react";
+import React, { JSX, useState, useEffect } from "react";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
@@ -26,24 +26,60 @@ const MobileNavbar = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // hide navbar on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 10) {
+        setShowNavbar(true);
+      } else if (currentScrollY > lastScrollY) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isMenuOpen]);
 
   const OverLay = () => {
     return (
-      <div className={`fixed top-0 left-0 h-screen w-screen bg-soft-pink z-40`}>
-        <ul className="flex flex-col mt-32 justify-evenly items-center w-full h-1/2">
+      <div className={`fixed h-screen w-screen bg-soft-pink z-40`}>
+        <ul className="flex flex-col mt-40 justify-evenly items-center w-full h-1/2">
           {navLinks.map((link) => (
-            <li key={link.href} className="flex items-center w-1/2 gap-4 mb-4">
+            <li
+              key={link.href}
+              className="flex items-center justify-center w-full gap-4 mb-4"
+            >
               <Link
                 href={link.href}
-                className={`text-4xl flex items-center  ${
+                className={`text-2xl w-1/3 font-semibold flex justify-center items-center ${
                   link.href === pathname ? "text-pink-600" : "text-black"
-                } font-semibold`}
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="text-3xl font-regular pr-4">
-                  {iconMap[link.href]}
-                </span>
-                {link.label}
+                <span className="pr-6">{iconMap[link.href]}</span>
+                <span className="w-20"> {link.label} </span>
               </Link>
             </li>
           ))}
@@ -54,7 +90,11 @@ const MobileNavbar = () => {
 
   return (
     <>
-      <div className="flex flex-row justify-between w-full h-full">
+      <div
+        className={`flex flex-row justify-between w-full h-full ${
+          showNavbar ? "block" : "hidden"
+        }`}
+      >
         {!isHomePage ? (
           <Link
             href={"/"}
