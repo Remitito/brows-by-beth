@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import LinkButton from "../(components)/LinkButton";
-
+import LinkButton from "@/components/LinkButton";
 const Page = () => {
   const subHeaderStyle =
     "hidden md:flex justify-center items-center text-center w-full h-1/4 md:my-0 my-6 text-3xl font-light";
@@ -67,23 +66,29 @@ const Page = () => {
           </span>
         </div>
         {/* Price List */}
-        <div className="flex flex-col w-full md:w-1/3 mb-8  h-full">
+        <div className="flex flex-col w-full md:w-1/3 mb-8 h-full">
           <h2 className={`${subHeaderStyle}`}>Prices</h2>
+
           <div className="flex flex-col items-center justify-center md:h-3/5">
-            {prices.map((item, index) => (
-              <div
-                className="flex w-3/4 justify-between px-4 md:py-6  py-2"
-                key={index}
-              >
-                <span>{item.service}</span>
-                <span className="ml-4">{item.price}</span>
-              </div>
-            ))}
-            {/* Mobile Book Button */}
+            <table className="w-3/4 text-left">
+              <tbody className="md:text-lg font-light">
+                {prices.map((item, index) => (
+                  <tr key={index} className="">
+                    <td className="px-4 md:px-6 md:py-4 py-2">
+                      {item.service}
+                    </td>
+                    <td className="px-4 md:px-6 md:py-4 py-2 text-left">
+                      {item.price}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
             <LinkButton
               text={"Book Now"}
               url={"/book"}
-              customClass="text-sm mt-6 px-6 mb-6 md:hidden "
+              customClass="text-sm mt-6 px-6 mb-6 md:hidden"
             />
           </div>
         </div>

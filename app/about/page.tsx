@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import LinkButton from "../(components)/LinkButton";
+import LinkButton from "@/components/LinkButton";
 import { FiPhone, FiMail } from "react-icons/fi";
 import { BsInstagram } from "react-icons/bs";
 import { SiTiktok } from "react-icons/si";
