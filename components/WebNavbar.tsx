@@ -16,7 +16,11 @@ const WebNavbar = () => {
   const pathname = usePathname();
   const [logoHover, setLogoHover] = useState(false);
   return (
-    <div className="flex flex-row justify-between w-full h-full">
+    <div
+      className={`items-center ${
+        pathname == "/" && "fixed"
+      } hidden md:flex flex-row justify-between w-full z-50 h-[10vh]`}
+    >
       {pathname != "/" ? (
         <Link
           href={"/"}

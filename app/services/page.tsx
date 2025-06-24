@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import LinkButton from "@/components/LinkButton";
+
 const Page = () => {
   const subHeaderStyle =
     "hidden md:flex justify-center items-center text-center w-full h-1/4 md:my-0 my-6 text-3xl font-light";
@@ -28,7 +29,7 @@ const Page = () => {
 
   const BannerPhoto = ({ index }: { index: number }) => {
     return (
-      <div className="relative md:w-1/4 w-1/3 flex h-full ">
+      <div className="relative md:w-1/4 w-1/3  ">
         {" "}
         <Image
           fill
@@ -41,22 +42,22 @@ const Page = () => {
   };
 
   return (
-    <div className="min-h-screen md:h-screen w-full flex flex-col">
+    <div className="min-h-screen md:min-h-full  md:h-full w-full flex flex-col">
       {/* Mobile banner */}
 
-      <div className="flex flex-row h-12 mt-20 md:hidden">
+      <div className="flex flex-row h-12 md:hidden">
         {[2, 3, 1].map((index) => (
           <BannerPhoto key={index} index={index} />
         ))}
       </div>
 
       {/* Web banner*/}
-      <div className="hidden md:flex flex-row mt-20 h-[18%]">
+      <div className="hidden md:flex flex-row h-[20vh]">
         {[3, 2, 1, 4].map((index) => (
           <BannerPhoto key={index} index={index} />
         ))}
       </div>
-      <div className="flex md:h-[70%] flex-col md:flex-row items-center">
+      <div className="flex md:h-[70vh] flex-col md:flex-row items-center">
         {/* Info Section Mobile  */}
         <div className="flex md:hidden flex-col items-center w-full text-center">
           <h1 className="text-4xl mt-8 mb-2">Services</h1>

@@ -26,29 +26,6 @@ const MobileNavbar = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  // hide navbar on scroll down, show on scroll up
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY <= 10) {
-        setShowNavbar(true);
-      } else if (currentScrollY > lastScrollY) {
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -64,8 +41,12 @@ const MobileNavbar = () => {
 
   const OverLay = () => {
     return (
-      <div className={`fixed h-screen w-screen bg-soft-pink z-40`}>
-        <ul className="flex flex-col mt-40 justify-evenly items-center w-full h-1/2">
+      <div className={`fixed h-screen w-screen bg-soft-pink z-50`}>
+        <ul
+          className={`flex flex-col ${
+            pathname == "/" ? "mt-[20vh]" : "mt-[10vh]"
+          } justify-evenly items-center w-full h-1/2`}
+        >
           {navLinks.map((link) => (
             <li
               key={link.href}
@@ -91,9 +72,9 @@ const MobileNavbar = () => {
   return (
     <>
       <div
-        className={`flex flex-row justify-between w-full h-full ${
-          showNavbar ? "block" : "hidden"
-        }`}
+        className={`items-center ${
+          pathname == "/" && "fixed"
+        } flex flex-row justify-between w-full z-40 h-[10vh]`}
       >
         {!isHomePage ? (
           <Link

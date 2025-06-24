@@ -4,7 +4,7 @@ import LinkButton from "@/components/LinkButton";
 
 export default function Home() {
   return (
-    <div className="relative flex h-screen w-full lg:items-center justify-center p-6 lg:justify-start lg:p-0 lg:pl-[5%]">
+    <div className="flex h-screen w-full lg:items-center justify-center p-6 lg:justify-start lg:p-0 lg:pl-[5%]">
       <div
         className="absolute inset-0 hidden bg-cover lg:block"
         style={{
