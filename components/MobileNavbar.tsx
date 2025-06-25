@@ -41,7 +41,7 @@ const MobileNavbar = () => {
 
   const OverLay = () => {
     return (
-      <div className={`fixed h-screen w-screen bg-soft-pink z-50`}>
+      <div className={`fixed md:hidden h-screen w-screen bg-soft-pink z-50`}>
         <ul
           className={`flex flex-col ${
             pathname == "/" ? "mt-[20vh]" : "mt-[10vh]"
@@ -74,7 +74,7 @@ const MobileNavbar = () => {
       <div
         className={`items-center ${
           pathname == "/" && "fixed"
-        } flex flex-row justify-between w-full z-40 h-[10vh]`}
+        } md:hidden flex flex-row justify-between w-full z-40 h-[10vh]`}
       >
         {!isHomePage ? (
           <Link

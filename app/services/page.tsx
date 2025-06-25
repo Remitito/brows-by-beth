@@ -5,6 +5,14 @@ import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import LinkButton from "@/components/LinkButton";
 
+export const prices = [
+  { service: "Brow Tint", price: "£5" },
+  { service: "Eyelash Tint", price: "£5" },
+  { service: "Brow Wax", price: "£8" },
+  { service: "Brow & Lash Tint", price: "£9" },
+  { service: "Full Service", price: "£16" },
+];
+
 const Page = () => {
   const subHeaderStyle =
     "hidden md:flex justify-center items-center text-center w-full h-1/4 md:my-0 my-6 text-3xl font-light";
@@ -18,14 +26,6 @@ const Page = () => {
   const handlePrevPhoto = () => {
     setPhotoIndex((prev) => (prev == 1 ? 6 : prev - 1));
   };
-
-  const prices = [
-    { service: "Brow Tint", price: "£5" },
-    { service: "Eyelash Tint", price: "£5" },
-    { service: "Brow Wax", price: "£8" },
-    { service: "Brow & Lash Tint", price: "£9" },
-    { service: "Full Service", price: "£16" },
-  ];
 
   const BannerPhoto = ({ index }: { index: number }) => {
     return (
@@ -62,8 +62,9 @@ const Page = () => {
         <div className="flex md:hidden flex-col items-center w-full text-center">
           <h1 className="text-4xl mt-8 mb-2">Services</h1>
           <span className="font-light mb-6 w-[90%] text-md">
-            I offer call-out brow & lash tinting and brow waxing in Hereford or
-            Presteigne, with discounts available for combined treatments.{" "}
+            I offer call-out brow & lash tinting and brow waxing in Hereford,
+            Leominster and Presteigne, with discounts available for combined
+            treatments.{" "}
           </span>
         </div>
         {/* Price List */}

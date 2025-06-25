@@ -44,7 +44,7 @@ export default function Home() {
           <span className="block">Tint and Brow Stylist</span>
         </h2>
         <h3 className=" text-sm text-center text-gray-600">
-          (Based in Hereford and Presteigne)
+          (Based in Hereford, Leominster, and Presteigne)
         </h3>
         <LinkButton
           text="BOOK NOW"

@@ -65,7 +65,7 @@ const page = () => {
           <span className="lg:text-xl text-lg font-light mt-4">
             Since completing my Brow & Lash Tinting & Brow Waxing qualification
             with Tatti Lashes, I have been offering at-home brow and/or lash
-            services in Hereford and Presteigne.
+            services in Hereford, Leominster, and Presteigne.
           </span>
           <LinkButton
             text="See My Services"
