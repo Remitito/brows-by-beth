@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { headerStyle } from "./MainClient";
 
 interface ChooseCityProps {
   setSelectedCity: (city: string) => void;
@@ -35,9 +36,7 @@ const ChooseCity: React.FC<ChooseCityProps> = ({ setSelectedCity }) => {
 
   return (
     <div className="flex flex-col items-center  w-full p-8 ">
-      <h1 className="text-4xl md:text-5xl font-semibold text-center mb-20 md:mb-20 text-gray-800">
-        Where are you based?
-      </h1>
+      <h1 className={headerStyle}>Where are you based?</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl">
         {cities.map((city) => (

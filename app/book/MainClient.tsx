@@ -3,24 +3,151 @@
 import React, { useState } from "react";
 import ChooseCity from "./ChooseCity";
 import ChooseService from "./ChooseService";
+import ChooseTime from "./ChooseTime";
+import EnterDetails from "./EnterDetails";
+import { BookingProgressBar } from "./BookingProgressBar";
+import { createAppointment } from "@/actions/createAppointment";
+
+export interface FormDetails {
+  name: string;
+  email: string;
+  phone?: string;
+  addressLine1: string;
+  addressLine2?: string;
+  postcode: string;
+}
+
+export const headerStyle = "text-3xl  text-center mb-10 text-gray-800";
 
 const MainClient = () => {
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedService, setSelectedService] = useState<string>("");
+  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
+  const [form, setForm] = useState<FormDetails>({
+    name: "",
+    email: "",
+    phone: "",
+    addressLine1: "",
+    addressLine2: "",
+    postcode: "",
+  });
+  const [error, setError] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+
+  const steps = ["City", "Service", "Time", "Details", "Confirm"];
+
+  // refers towhich step of booking the user is on
+  let currentStep = 0;
+  if (selectedCity) currentStep = 1;
+  if (selectedService) currentStep = 2;
+  if (selectedTime) currentStep = 3;
+  if (success) currentStep = 4;
+
+  const goToStep = (stepIndex: number) => {
+    if (success || error) return;
+
+    if (stepIndex < 3) {
+      setSelectedTime(null);
+    }
+    if (stepIndex < 2) {
+      setSelectedService("");
+    }
+    if (stepIndex < 1) {
+      setSelectedCity("");
+    }
+  };
+
+  const handleFormSubmit = async () => {
+    try {
+      await createAppointment({
+        name: form.name,
+        email: form.email,
+        addressLine1: form.addressLine1,
+        addressLine2: form.addressLine2 || undefined,
+        city: selectedCity,
+        postcode: form.postcode,
+        time: selectedTime ? selectedTime.toISOString() : "",
+        service: selectedService,
+        paid: false,
+      });
+      setSuccess(true);
+      setError(false);
+    } catch (e) {
+      setError(true);
+      setSuccess(false);
+      console.error(e);
+    }
+  };
+
+  const ErrorScreen = () => (
+    <div className="text-center">
+      <h2 className="text-red-600 text-2xl font-bold mb-4">
+        Something went wrong.
+      </h2>
+      <p className="mb-6">
+        There was an error submitting your appointment. Please try again or
+        contact me directly to book.
+      </p>
+      <div className="flex flex-row w-full justify-evenly items-center">
+        <button
+          onClick={() => setError(false)}
+          className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded mb-4"
+        >
+          Retry
+        </button>
+      </div>
+    </div>
+  );
+
+  const SuccessScreen = () => (
+    <div className="text-center w-full max-w-lg flex flex-col justify-center items-center">
+      <h2 className="text-green-600 text-4xl font-bold mb-4">
+        Appointment Confirmed!
+      </h2>
+      <p className="mb-6 text-lg">
+        Thank you for booking your appointment, your details will be sent to
+        your email. <br></br> I look forward to seeing you!
+      </p>
+    </div>
+  );
+
+  const renderContent = () => {
+    if (error) {
+      return <ErrorScreen />;
+    }
+    if (success) {
+      return <SuccessScreen />;
+    }
+    if (!selectedCity) {
+      return <ChooseCity setSelectedCity={setSelectedCity} />;
+    }
+    if (!selectedService) {
+      return <ChooseService setSelectedService={setSelectedService} />;
+    }
+    if (!selectedTime) {
+      return <ChooseTime setSelectedTime={setSelectedTime} />;
+    }
+    return (
+      <EnterDetails
+        setForm={setForm}
+        form={form}
+        selectedCity={selectedCity}
+        onSubmit={handleFormSubmit}
+      />
+    );
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full p-8">
-      {!selectedCity ? (
-        <ChooseCity setSelectedCity={setSelectedCity} />
-      ) : !selectedService ? (
-        <ChooseService setSelectedService={setSelectedService} />
-      ) : (
-        <div className="flex flex-col items-center justify-center w-full min-h-screen">
-          <h2 className="text-2xl text-gray-700 font-semibold">
-            You selected {selectedService} in {selectedCity}.
-          </h2>
-        </div>
-      )}
+    <div className="flex flex-col items-center w-full h-full">
+      <BookingProgressBar
+        steps={steps}
+        currentStep={currentStep}
+        goToStep={goToStep}
+        isCompleted={success}
+      />
+      <div className="flex flex-col items-center justify-center flex-grow w-full mt-4">
+        {renderContent()}
+      </div>
     </div>
   );
 };

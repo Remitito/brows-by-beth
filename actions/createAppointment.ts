@@ -13,7 +13,7 @@ interface AppointmentInput {
   city: string;
   postcode: string;
   time: string; // ISO date string
-  service: number;
+  service: string;
   paid?: boolean; // may need later
 }
 

@@ -8,7 +8,7 @@ export interface IAppointment extends Document {
   postcode: string;
   time: Date;
   user: mongoose.Types.ObjectId | IUser;
-  service: number;
+  service: string;
   paid: boolean;
   code: string;
 }
@@ -21,7 +21,7 @@ const AppointmentSchema: Schema = new Schema<IAppointment>(
     postcode: { type: String, required: true },
     time: { type: Date, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    service: { type: Number, required: true },
+    service: { type: String, required: true },
     paid: { type: Boolean, default: false },
     code: {
       type: String,

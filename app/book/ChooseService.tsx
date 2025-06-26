@@ -1,5 +1,6 @@
 import React from "react";
 import { prices } from "@/app/services/page";
+import { headerStyle } from "./MainClient";
 
 interface ChooseServiceProps {
   setSelectedService: (service: string) => void;
@@ -10,9 +11,7 @@ const ChooseService: React.FC<ChooseServiceProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-center w-full p-8">
-      <h1 className="text-4xl md:text-5xl font-semibold text-center mb-20 text-gray-800">
-        What service would you like to book?
-      </h1>
+      <h1 className={headerStyle}>What service would you like to book?</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
         {prices.map(({ service, price }) => (
