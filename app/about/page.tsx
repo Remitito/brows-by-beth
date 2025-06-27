@@ -53,7 +53,7 @@ const page = () => {
   };
 
   return (
-    <div className="h-full w-5/6 mt-20 lg:mt-0 flex flex-col lg:flex-row items-center justify-center">
+    <div className="h-full w-5/6 mt-12 lg:mt-0 flex flex-col lg:flex-row items-center justify-center">
       <div className="flex justify-center items-center w-full lg:w-1/2">
         <PhotoCircle />
       </div>
@@ -62,7 +62,7 @@ const page = () => {
           <h2 className="text-4xl lg:text-6xl mt-2 lg:mt-0 font-normal">
             Hi, I&apos;m Beth!
           </h2>
-          <span className="lg:text-xl text-lg font-light mt-4">
+          <span className="lg:text-xl text-md font-light mt-4">
             Since completing my Brow & Lash Tinting & Brow Waxing qualification
             with Tatti Lashes, I have been offering at-home brow and/or lash
             services in Hereford, Leominster, and Presteigne.
