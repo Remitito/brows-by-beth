@@ -57,7 +57,7 @@ const ChooseTime: React.FC<ChooseTimeProps> = ({
 
   return (
     <div className="flex flex-col items-center w-full p-8">
-      <h1 className={headerStyle}>What time suits you?</h1>
+      <h1 className={headerStyle}>What date suits you?</h1>
 
       {/* Calendar grid */}
       <div className="w-full max-w-3xl mb-10">

@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChooseCity from "./ChooseCity";
 import ChooseService from "./ChooseService";
 import ChooseTime from "./ChooseTime";
 import EnterDetails from "./EnterDetails";
 import { BookingProgressBar } from "./BookingProgressBar";
 import { createAppointment } from "@/actions/createAppointment";
+import { getAppointments } from "@/actions/getAppointments";
 
 export interface FormDetails {
   name: string;
@@ -33,10 +34,30 @@ const MainClient = () => {
   });
   const [error, setError] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
+  const [unavailableTimes, setUnavailableTimes] = useState<Date[]>([]);
+  const [isLoadingAvailability, setIsLoadingAvailability] = useState(false);
+
+  useEffect(() => {
+    if (selectedCity && selectedService) {
+      const fetchUnavailableTimes = async () => {
+        setIsLoadingAvailability(true);
+        try {
+          const times = await getAppointments(selectedCity);
+          const dateObjects = times.map((time) => new Date(time));
+          setUnavailableTimes(dateObjects);
+        } catch (error) {
+          console.error("Failed to load appointments:", error);
+        } finally {
+          setIsLoadingAvailability(false);
+        }
+      };
+
+      fetchUnavailableTimes();
+    }
+  }, [selectedCity, selectedService]);
 
   const steps = ["City", "Service", "Time", "Details", "Confirm"];
 
-  // refers towhich step of booking the user is on
   let currentStep = 0;
   if (selectedCity) currentStep = 1;
   if (selectedService) currentStep = 2;
@@ -106,8 +127,15 @@ const MainClient = () => {
       </h2>
       <p className="mb-6 text-lg">
         Thank you for booking your appointment, your details will be sent to
-        your email. <br></br> I look forward to seeing you!
+        your email.
       </p>
+    </div>
+  );
+
+  const LoadingScreen = () => (
+    <div className="text-center">
+      <h2 className="text-2xl font-bold mb-4">Loading Availability...</h2>
+      <p>Checking the calendar for you.</p>
     </div>
   );
 
@@ -124,8 +152,16 @@ const MainClient = () => {
     if (!selectedService) {
       return <ChooseService setSelectedService={setSelectedService} />;
     }
+    if (isLoadingAvailability) {
+      return <LoadingScreen />;
+    }
     if (!selectedTime) {
-      return <ChooseTime setSelectedTime={setSelectedTime} />;
+      return (
+        <ChooseTime
+          setSelectedTime={setSelectedTime}
+          unavailableTimes={unavailableTimes}
+        />
+      );
     }
     return (
       <EnterDetails
