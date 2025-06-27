@@ -12,7 +12,7 @@ const page = () => {
         <div className="lg:w-96 lg:h-96 h-40 w-40 rounded-full overflow-hidden">
           <div className="relative w-full h-full">
             <Image
-              src="/portrait.webp"
+              src="/images/portrait.webp"
               alt="Beth"
               fill
               className="object-cover"
