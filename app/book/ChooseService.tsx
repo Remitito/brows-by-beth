@@ -1,5 +1,5 @@
 import React from "react";
-import { prices } from "@/app/services/page";
+import { prices } from "../services/data";
 import { headerStyle } from "./MainClient";
 
 interface ChooseServiceProps {

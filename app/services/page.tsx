@@ -4,14 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import LinkButton from "@/components/LinkButton";
-
-export const prices = [
-  { service: "Brow Tint", price: "£5" },
-  { service: "Eyelash Tint", price: "£5" },
-  { service: "Brow Wax", price: "£8" },
-  { service: "Brow & Lash Tint", price: "£9" },
-  { service: "Full Service", price: "£16" },
-];
+import { prices } from "./data";
 
 const Page = () => {
   const subHeaderStyle =
