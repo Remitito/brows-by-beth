@@ -18,7 +18,7 @@ const WebNavbar = () => {
   return (
     <div
       className={`items-center ${
-        pathname == "/" && "fixed"
+        (pathname == "/" || pathname == "/contact") && "fixed"
       } hidden md:flex flex-row justify-between w-full z-50 h-[10vh]`}
     >
       {pathname != "/" ? (

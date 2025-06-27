@@ -41,10 +41,12 @@ const MobileNavbar = () => {
 
   const OverLay = () => {
     return (
-      <div className={`fixed md:hidden h-screen w-screen bg-soft-pink z-50`}>
+      <div className={`fixed md:hidden h-screen w-screen bg-soft-pink z-40`}>
         <ul
           className={`flex flex-col ${
-            pathname == "/" ? "mt-[20vh]" : "mt-[10vh]"
+            pathname == "/" || pathname == "/contact"
+              ? "mt-[20vh]"
+              : "mt-[10vh]"
           } justify-evenly items-center w-full h-1/2`}
         >
           {navLinks.map((link) => (
@@ -73,8 +75,8 @@ const MobileNavbar = () => {
     <>
       <div
         className={`items-center ${
-          pathname == "/" && "fixed"
-        } md:hidden flex flex-row justify-between w-full z-40 h-[10vh]`}
+          pathname === "/" || pathname === "/contact" ? "fixed" : ""
+        } md:hidden flex flex-row justify-between w-full z-50 h-[10vh]`}
       >
         {!isHomePage ? (
           <Link
