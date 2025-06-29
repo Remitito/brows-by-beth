@@ -3,121 +3,127 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import LinkButton from "@/components/LinkButton";
 import { prices } from "./data";
+import { BsInstagram } from "react-icons/bs";
+import { SiTiktok } from "react-icons/si";
 
 const Page = () => {
-  const subHeaderStyle =
-    "hidden md:flex justify-center items-center text-center w-full h-1/4 md:my-0 my-6 text-3xl font-light";
-
-  const [photoIndex, setPhotoIndex] = useState(1);
+  const middleContStyle =
+    "w-11/12 md:w-1/3 min-h-[350px] bg-white border border-gray-200 shadow-md rounded-2xl p-6 flex flex-col justify-between";
+  const [photoIndex, setPhotoIndex] = useState(4);
 
   const handleNextPhoto = () => {
-    setPhotoIndex((prev) => (prev == 6 ? 1 : prev + 1));
+    setPhotoIndex((prev) => (prev === 6 ? 1 : prev + 1));
   };
 
   const handlePrevPhoto = () => {
-    setPhotoIndex((prev) => (prev == 1 ? 6 : prev - 1));
+    setPhotoIndex((prev) => (prev === 1 ? 6 : prev - 1));
   };
 
-  const BannerPhoto = ({ index }: { index: number }) => {
+  const Socials = () => {
+    const itemStyles = "flex items-center";
+    const iconStyles = "text-pink-600 text-xl";
+    const linkStyles =
+      "text-gray-700 md:hover:text-pink-600 text-sm md:text-base font-medium ml-2";
+
     return (
-      <div className="relative md:w-1/4 w-1/3  ">
-        {" "}
-        <Image
-          fill
-          className="object-cover"
-          src={`/images/banner/${index}.webp`}
-          alt={`Banner ${index}`}
-        />
+      <div className="flex flex-row space-x-20 items-center justify-center w-full">
+        <div className={itemStyles}>
+          <BsInstagram className={iconStyles} />
+          <a
+            className={linkStyles}
+            href="https://www.instagram.com/browsbybeth28/?hl=en"
+          >
+            browsbybeth28
+          </a>
+        </div>
+        <div className={itemStyles}>
+          <SiTiktok className={iconStyles} />
+          <a
+            className={linkStyles}
+            href="https://www.tiktok.com/@browsbybeth28"
+          >
+            browsbybeth28
+          </a>
+        </div>
       </div>
     );
   };
 
   return (
-    <div className="min-h-screen md:min-h-full  md:h-full w-full flex flex-col">
-      {/* Mobile banner */}
-
-      <div className="flex flex-row h-12 md:hidden">
-        {[2, 3, 1].map((index) => (
-          <BannerPhoto key={index} index={index} />
-        ))}
+    <div className="h-full w-screen flex flex-col  text-gray-800">
+      <div className="relative w-full h-[20vh] md:h-[40vh]">
+        <Image
+          src="/images/bannerCloseUpZoomed.webp"
+          alt="Banner"
+          fill
+          className="object-cover brightness-75  opacity-80"
+        />
+        <div className="absolute inset-0 flex items-center  justify-center">
+          <h1 className="text-5xl md:text-7xl text-white font-semibold">
+            Services
+          </h1>
+        </div>
       </div>
 
-      {/* Web banner*/}
-      <div className="hidden md:flex flex-row h-[20vh]">
-        {[3, 2, 1, 4].map((index) => (
-          <BannerPhoto key={index} index={index} />
-        ))}
-      </div>
-      <div className="flex md:h-[70vh] flex-col md:flex-row items-center">
-        {/* Info Section Mobile  */}
-        <div className="flex md:hidden flex-col items-center w-full text-center">
-          <h1 className="text-4xl mt-8 mb-2">Services</h1>
-          <span className="font-light mb-6 w-[90%] text-md">
-            I offer call-out brow & lash tinting and brow waxing in Hereford,
-            Leominster and Presteigne, with discounts available for combined
-            treatments.{" "}
-          </span>
-        </div>
-        {/* Price List */}
-        <div className="flex flex-col w-full md:w-1/3 mb-8 h-full">
-          <h2 className={`${subHeaderStyle}`}>Prices</h2>
+      {/* <div className="pt-6 px-6">
+        <p className="text-center text-base md:text-lg font-light max-w-xl mx-auto">
+          Since completing my Brow & Lash Tinting & Brow Waxing qualification
+          with Tatti Lashes, I have been offering at-home brow and/or lash
+          services in Hereford, Leominster, and Presteigne.
+        </p>
+      </div> */}
 
-          <div className="flex flex-col items-center justify-center md:h-3/5">
-            <table className="w-3/4 text-left">
-              <tbody className="md:text-lg font-light">
-                {prices.map((item, index) => (
-                  <tr key={index} className="">
-                    <td className="px-4 md:px-6 md:py-4 py-2">
-                      {item.service}
-                    </td>
-                    <td className="px-4 md:px-6 md:py-4 py-2 text-left">
-                      {item.price}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <div className="flex flex-col md:flex-row items-center md:items-start md:justify-evenly gap-10 py-12">
+        {/* Prices */}
+        <div className={middleContStyle}>
+          <h2 className="text-3xl font-semibold text-pink-600 text-center mb-6">
+            Prices
+          </h2>
+          <table className="w-full text-left">
+            <tbody className="divide-y divide-gray-200">
+              {prices.map((item, index) => (
+                <tr key={index} className="text-sm md:text-base">
+                  <td className="py-3">{item.service}</td>
+                  <td className="py-3 text-right">{item.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-            <LinkButton
-              text={"Book Now"}
-              url={"/book"}
-              customClass="text-sm mt-6 px-6 mb-6 md:hidden"
-            />
-          </div>
-        </div>
-        {/* Info Section Web  */}
-        <div className="hidden md:flex flex-col items-center w-1/3 text-center">
-          <h1 className="text-6xl">Services</h1>
-          <span className="font-light mb-10 w-5/6 text-xl mt-8">
-            I offer call-out brow & lash tinting and brow waxing in Hereford or
-            Presteigne, with discounts available for combined treatments.{" "}
-          </span>
-          <LinkButton text={"Make an Appointment"} url={"/book"} />
-        </div>
         {/* Gallery */}
-        <div className="flex flex-col md:w-1/3 w-full h-52 md:h-full  mb-8">
-          <h2 className={`${subHeaderStyle}`}>Gallery</h2>
-          <div className="flex flex-row items-center justify-center md:h-3/5 h-full">
+        <div className={middleContStyle}>
+          <h2 className="text-3xl font-semibold text-pink-600 text-center mb-6">
+            Gallery
+          </h2>
+
+          <div className="flex items-center justify-center flex-grow">
             <IoIosArrowBack
-              onClick={() => handlePrevPhoto()}
-              className="text-3xl cursor-pointer md:hover:text-pink-600"
+              onClick={handlePrevPhoto}
+              className="text-3xl cursor-pointer text-gray-500 hover:text-pink-600 transition"
             />
-            <div className="relative h-full flex rounded-4xl w-full md:w-4/6 mx-6 overflow-hidden">
+            <div className="relative w-[300px] h-[200px] mx-10 rounded-lg overflow-hidden shadow-sm">
               <Image
-                fill
-                alt={`Sample Photo ${photoIndex}`}
                 src={`/images/samples/${photoIndex}.webp`}
+                alt={`Sample Photo ${photoIndex}`}
+                fill
                 className="object-cover"
               />
             </div>
             <IoIosArrowForward
-              onClick={() => handleNextPhoto()}
-              className="text-3xl cursor-pointer md:hover:text-pink-600"
+              onClick={handleNextPhoto}
+              className="text-3xl cursor-pointer text-gray-500 hover:text-pink-600 transition"
             />
           </div>
-        </div>{" "}
+        </div>
+      </div>
+
+      <div className="py-12 flex flex-col items-center justify-center bg-white">
+        <h3 className="text-3xl font-semibold text-gray-900 mb-8">
+          Follow me on socials
+        </h3>
+        <Socials />
       </div>
     </div>
   );

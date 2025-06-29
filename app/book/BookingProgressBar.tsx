@@ -14,7 +14,7 @@ export const BookingProgressBar: React.FC<BookingProgressBarProps> = ({
   isCompleted,
 }) => {
   return (
-    <div className="flex w-full flex-row items-center justify-center mt-8 px-4 md:px-0">
+    <div className="flex w-full flex-row  items-center justify-center mt-8 px-4 md:px-0">
       {steps.map((step, index) => (
         <React.Fragment key={step}>
           <div className="flex flex-col items-center">

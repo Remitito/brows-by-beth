@@ -31,7 +31,7 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       className="bg-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-md"
     >
-      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-gray-800">
+      <h1 className="text-2xl sm:text-3xl  text-center mb-6 text-gray-800">
         Get In Touch
       </h1>
 

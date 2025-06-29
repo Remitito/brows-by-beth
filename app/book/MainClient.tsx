@@ -101,7 +101,7 @@ const MainClient = () => {
   };
 
   const ErrorScreen = () => (
-    <div className="text-center">
+    <div className="mt-20 md:mt-0 text-center">
       <h2 className="text-red-600 text-2xl font-bold mb-4">
         Something went wrong.
       </h2>
@@ -121,11 +121,11 @@ const MainClient = () => {
   );
 
   const SuccessScreen = () => (
-    <div className="text-center w-full max-w-lg flex flex-col justify-center items-center">
-      <h2 className="text-green-600 text-4xl font-bold mb-4">
+    <div className="text-center  mt-20 md:mt-0 w-2/3 md:w-full max-w-lg flex flex-col justify-center items-center">
+      <h2 className="text-green-600 text-2xl md:text-4xl font-bold mb-4">
         Appointment Confirmed!
       </h2>
-      <p className="mb-6 text-lg">
+      <p className="mb-6 md:text-lg">
         Thank you for booking your appointment, your details will be sent to
         your email.
       </p>
@@ -140,10 +140,10 @@ const MainClient = () => {
   );
 
   const renderContent = () => {
-    if (error) {
+    if (success) {
       return <ErrorScreen />;
     }
-    if (success) {
+    if (error) {
       return <SuccessScreen />;
     }
     if (!selectedCity) {

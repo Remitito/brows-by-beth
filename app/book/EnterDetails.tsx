@@ -42,13 +42,13 @@ const EnterDetails: React.FC<EnterDetailsProps> = ({
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4">
+    <div className="flex items-center w-full justify-center  px-4">
       <div className="w-full max-w-3xl lg:max-w-4xl xl:max-w-5xl bg-white p-10 md:p-14 rounded-2xl shadow-xl">
         <h1 className={headerStyle}>Contact Details</h1>
 
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           {error && (
             <div className="col-span-full text-red-600 text-sm font-medium">
