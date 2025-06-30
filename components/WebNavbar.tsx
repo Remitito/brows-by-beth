@@ -23,7 +23,7 @@ const WebNavbar = () => {
       {pathname != "/" ? (
         <Link
           href={"/"}
-          className="h-full flex justify-center items-center pl-4"
+          className="h-full z-50 flex justify-center items-center pl-4"
           onMouseEnter={() => setLogoHover(true)}
           onMouseLeave={() => setLogoHover(false)}
         >
@@ -32,6 +32,7 @@ const WebNavbar = () => {
             height={200}
             width={200}
             alt="Brand Logo"
+            className="object-cover"
           />
         </Link>
       ) : (

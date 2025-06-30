@@ -77,7 +77,7 @@ const MobileNavbar = () => {
             className="z-50 h-full flex justify-center items-center pl-4"
           >
             <Image
-              src={"/logo.webp"}
+              src={"/images/logo.webp"}
               height={150}
               width={150}
               className=""

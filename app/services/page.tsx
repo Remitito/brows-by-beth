@@ -103,7 +103,7 @@ const Page = () => {
               onClick={handlePrevPhoto}
               className="text-3xl cursor-pointer text-gray-500 hover:text-pink-600 transition"
             />
-            <div className="relative w-[300px] h-[200px] mx-10 rounded-lg overflow-hidden shadow-sm">
+            <div className="relative w-[300px] h-[200px] mx-4 md:mx-10 rounded-lg overflow-hidden shadow-sm">
               <Image
                 src={`/images/samples/${photoIndex}.webp`}
                 alt={`Sample Photo ${photoIndex}`}

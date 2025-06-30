@@ -26,10 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.className}  bg-soft-pink w-screen`}>
+      <body className={`${outfit.className}  bg-soft-pink`}>
         <WebNavbar />
         <MobileNavbar />
-        <div className=" flex items-center justify-center">{children}</div>
+        <div className="flex items-center justify-center">{children}</div>
       </body>
     </html>
   );
