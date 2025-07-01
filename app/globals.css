@@ -4,9 +4,3 @@
   --color-brand-pink: #ffaae5;
   --color-soft-pink: #ffe9fa;
 }
-
-@utility scrollbar-hidden {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
