@@ -6,10 +6,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { prices } from "./data";
 import { BsInstagram } from "react-icons/bs";
 import { SiTiktok } from "react-icons/si";
-export const middleHeadings =
-  "text-2xl md:text-4xl font-serif text-pink-600 text-center mb-10";
 const Page = () => {
   const [photoIndex, setPhotoIndex] = useState(4);
+  const middleHeadings =
+    "text-2xl md:text-4xl font-serif text-pink-600 text-center mb-10";
 
   const handleNextPhoto = () => {
     setPhotoIndex((prev) => (prev === 6 ? 1 : prev + 1));
