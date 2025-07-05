@@ -42,8 +42,8 @@ const EnterDetails: React.FC<EnterDetailsProps> = ({
   };
 
   return (
-    <div className="flex items-center w-full justify-center  px-4">
-      <div className="w-full max-w-3xl lg:max-w-4xl xl:max-w-5xl bg-white p-10 md:p-14 rounded-2xl shadow-xl">
+    <div className="flex h-5/6 items-center w-full justify-center  px-4">
+      <div className="w-full max-w-3xl lg:max-w-4xl xl:max-w-5xl p-10 md:p-14">
         <h1 className={headerStyle}>Contact Details</h1>
 
         <form

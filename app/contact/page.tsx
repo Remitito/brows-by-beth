@@ -11,7 +11,7 @@ const Page = () => {
         className="object-cover opacity-30"
         priority
       />
-      <div className="z-10 flex mt-20 items-center justify-center h-full w-full p-4 sm:p-6">
+      <div className="z-10 flex mt-10 items-center justify-center h-full w-full p-4 sm:p-6">
         <ContactForm />
       </div>
       <a

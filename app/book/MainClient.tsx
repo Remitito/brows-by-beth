@@ -18,12 +18,13 @@ export interface FormDetails {
   postcode: string;
 }
 
-export const headerStyle = "text-3xl  text-center mb-10 text-gray-800";
+export const headerStyle =
+  "text-3xl md:text-4xl font-serif text-pink-600 text-center mb-10";
 
 const MainClient = () => {
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedService, setSelectedService] = useState<string>("");
-  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<Date | null>();
   const [form, setForm] = useState<FormDetails>({
     name: "",
     email: "",
@@ -36,7 +37,8 @@ const MainClient = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [unavailableTimes, setUnavailableTimes] = useState<Date[]>([]);
   const [isLoadingAvailability, setIsLoadingAvailability] = useState(false);
-
+  const successCont =
+    "text-center h-1/2  flex justify-center items-center flex-col mt-20 md:mt-0 max-w-lg mx-auto";
   useEffect(() => {
     if (selectedCity && selectedService) {
       const fetchUnavailableTimes = async () => {
@@ -62,7 +64,7 @@ const MainClient = () => {
   if (selectedCity) currentStep = 1;
   if (selectedService) currentStep = 2;
   if (selectedTime) currentStep = 3;
-  if (success) currentStep = 4;
+  if (success) currentStep = 5;
 
   const goToStep = (stepIndex: number) => {
     if (success || error) return;
@@ -101,50 +103,49 @@ const MainClient = () => {
   };
 
   const ErrorScreen = () => (
-    <div className="mt-20 md:mt-0 text-center">
-      <h2 className="text-red-600 text-2xl font-bold mb-4">
-        Something went wrong.
+    <div className={successCont}>
+      <h2 className="text-3xl font-serif text-red-600 mb-4">
+        Something went wrong
       </h2>
-      <p className="mb-6">
+      <p className="text-gray-600 mb-8">
         There was an error submitting your appointment. Please try again or
         contact me directly to book.
       </p>
-      <div className="flex flex-row w-full justify-evenly items-center">
-        <button
-          onClick={() => setError(false)}
-          className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded mb-4"
-        >
-          Retry
-        </button>
-      </div>
+      <button
+        onClick={() => setError(false)}
+        className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg shadow-md transition-transform hover:scale-105"
+      >
+        Try Again
+      </button>
     </div>
   );
 
   const SuccessScreen = () => (
-    <div className="text-center  mt-20 md:mt-0 w-2/3 md:w-full max-w-lg flex flex-col justify-center items-center">
-      <h2 className="text-green-600 text-2xl md:text-4xl font-bold mb-4">
+    <div className={successCont}>
+      <h2 className="text-4xl font-serif text-pink-600 mb-4">
         Appointment Confirmed!
       </h2>
-      <p className="mb-6 md:text-lg">
-        Thank you for booking your appointment, your details will be sent to
-        your email.
+      <p className="text-gray-600 text-md">
+        Thank you for booking. A confirmation email is on its way to you.
       </p>
     </div>
   );
 
   const LoadingScreen = () => (
-    <div className="text-center">
-      <h2 className="text-2xl font-bold mb-4">Loading Availability...</h2>
-      <p>Checking the calendar for you.</p>
+    <div className="text-center mt-10 md:mt-0">
+      <h2 className="text-2xl font-serif text-gray-700 mb-2">
+        Loading Availability...
+      </h2>
+      <p className="text-gray-500">Checking the calendar for you.</p>
     </div>
   );
 
   const renderContent = () => {
     if (success) {
-      return <ErrorScreen />;
+      return <SuccessScreen />;
     }
     if (error) {
-      return <SuccessScreen />;
+      return <ErrorScreen />;
     }
     if (!selectedCity) {
       return <ChooseCity setSelectedCity={setSelectedCity} />;
@@ -174,14 +175,14 @@ const MainClient = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-full">
+    <div className="w-full min-h-dvh md:h-screen bg-gray-50 text-gray-800 font-sans flex flex-col items-center py-8">
       <BookingProgressBar
         steps={steps}
         currentStep={currentStep}
         goToStep={goToStep}
         isCompleted={success}
       />
-      <div className="flex flex-col items-center justify-center flex-grow w-full mt-4">
+      <div className="flex flex-col h-5/6  flex-grow w-full px-4 ">
         {renderContent()}
       </div>
     </div>

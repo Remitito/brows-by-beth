@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { sendEmail } from "@/actions/sendEmail";
-
+import { middleHeadings } from "../services/page";
 const ContactForm = () => {
   const [status, setStatus] = useState<{
     success: boolean;
@@ -31,9 +31,7 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       className="bg-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-md"
     >
-      <h1 className="text-2xl sm:text-3xl  text-center mb-6 text-gray-800">
-        Get In Touch
-      </h1>
+      <h1 className={`${middleHeadings} text-center`}>Get In Touch</h1>
 
       {status && (
         <div

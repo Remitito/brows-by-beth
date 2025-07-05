@@ -14,50 +14,47 @@ export const BookingProgressBar: React.FC<BookingProgressBarProps> = ({
   isCompleted,
 }) => {
   return (
-    <div className="flex w-screen flex-row  items-center  px-6 md:px-12  justify-between mt-8">
+    <div className="w-full max-w-4xl h-1/6 mx-auto flex flex-row items-start justify-between ">
       {steps.map((step, index) => (
         <React.Fragment key={step}>
-          <div className="flex flex-col items-center flex-shrink-0">
+          <div className="flex flex-col items-center flex-shrink-0 text-center">
             <button
               onClick={() => goToStep(index)}
               disabled={index >= currentStep || isCompleted}
-              className={`flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full text-sm md:text-lg font-bold transition-all duration-300
+              className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold transition-all duration-300
                 ${
-                  index < currentStep
-                    ? "bg-green-500 text-white cursor-pointer hover:bg-green-600"
+                  index < currentStep || isCompleted
+                    ? "bg-pink-500 text-white cursor-pointer hover:bg-pink-600"
                     : ""
                 }
                 ${
                   index === currentStep
-                    ? "bg-blue-500 text-white scale-110"
+                    ? "bg-pink-600 text-white ring-4 ring-pink-200"
                     : ""
                 }
-                ${
-                  index > currentStep
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : ""
-                }
-                ${isCompleted && "bg-green-500 text-white"}`}
+                ${index > currentStep ? "bg-gray-200 text-gray-500" : ""}`}
             >
               {isCompleted ? "✓" : index + 1}
             </button>
             <p
-              className={`mt-2 text-xs md:text-sm text-center transition-colors duration-300 ${
+              className={`mt-2 text-xs w-16 transition-colors duration-300 ${
                 index === currentStep
-                  ? "font-bold text-gray-800"
+                  ? "font-semibold text-gray-800"
                   : "text-gray-500"
-              } ${isCompleted && "text-gray-800"}`}
+              } ${isCompleted && "text-gray-500"}`}
             >
               {step}
             </p>
           </div>
 
-          {/* Connecting line */}
           {index < steps.length - 1 && (
             <div
-              className={`h-1 flex-1 transition-colors duration-500 md:mx-2 bg-gray-300
-                ${index < currentStep || isCompleted ? "md:bg-green-500" : ""}
-                hidden md:block 
+              className={`h-0.5 flex-1 transition-colors duration-500 mt-4  sm:mx-2
+                ${
+                  index < currentStep || isCompleted
+                    ? "bg-pink-500"
+                    : "bg-gray-200"
+                }
               `}
             ></div>
           )}
