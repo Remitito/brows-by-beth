@@ -4,7 +4,8 @@ import LinkButton from "@/components/LinkButton";
 
 export default function Home() {
   return (
-    <div className="flex h-screen w-full lg:items-center justify-center p-6 lg:justify-start lg:p-0 lg:pl-[5%]">
+    <div className="flex h-dvh w-full lg:items-center justify-center p-6 lg:justify-start lg:p-0 lg:pl-[5%]">
+      {" "}
       <div
         className="absolute inset-0 hidden bg-cover lg:block"
         style={{
@@ -26,9 +27,7 @@ export default function Home() {
       >
         Photo by Polina Tankilevitch
       </a>
-
       <div className="absolute inset-0 bg-pink-100 opacity-80 lg:bg-[#fbd8ee] lg:opacity-75" />
-
       <div className="relative z-10 sm:pt-0 pt-16 flex w-full max-w-md flex-col items-center text-center lg:max-w-lg lg:text-left">
         <div className="relative w-3/4 lg:h-20 h-16">
           <Image

@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.className}  bg-soft-pink`}>
+      <body className={`${outfit.className} bg-soft-pink`}>
         <WebNavbar />
         <MobileNavbar />
         <div className="flex items-center justify-center">{children}</div>

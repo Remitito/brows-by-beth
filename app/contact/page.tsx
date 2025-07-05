@@ -3,7 +3,7 @@ import ContactForm from "./ContactForm";
 
 const Page = () => {
   return (
-    <div className="h-screen justify-center items-center flex-col flex w-full">
+    <div className="h-dvh justify-center items-center flex-col flex w-full">
       <Image
         src="/images/contactBig.webp"
         alt="Lashes and beauty tools on a pink background"

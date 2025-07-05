@@ -14,10 +14,10 @@ export const BookingProgressBar: React.FC<BookingProgressBarProps> = ({
   isCompleted,
 }) => {
   return (
-    <div className="flex w-full flex-row  items-center justify-center mt-8 px-4 md:px-0">
+    <div className="flex w-screen flex-row  items-center  px-6 md:px-12  justify-between mt-8">
       {steps.map((step, index) => (
         <React.Fragment key={step}>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center flex-shrink-0">
             <button
               onClick={() => goToStep(index)}
               disabled={index >= currentStep || isCompleted}
@@ -42,7 +42,7 @@ export const BookingProgressBar: React.FC<BookingProgressBarProps> = ({
               {isCompleted ? "✓" : index + 1}
             </button>
             <p
-              className={`mt-2 text-xs md:text-sm text-center w-20 transition-colors duration-300 ${
+              className={`mt-2 text-xs md:text-sm text-center transition-colors duration-300 ${
                 index === currentStep
                   ? "font-bold text-gray-800"
                   : "text-gray-500"

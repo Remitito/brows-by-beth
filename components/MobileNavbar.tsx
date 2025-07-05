@@ -34,7 +34,7 @@ const MobileNavbar = () => {
 
   const OverLay = () => {
     return (
-      <div className={`fixed md:hidden h-screen w-screen bg-soft-pink z-40`}>
+      <div className={`fixed md:hidden h-dvh w-screen bg-soft-pink z-40`}>
         <ul
           className={`flex flex-col ${
             pathname == "/" || pathname == "/contact"
