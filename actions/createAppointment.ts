@@ -4,7 +4,7 @@ import crypto from "crypto";
 import dbConnect from "@/lib/dbConnect";
 import { User } from "@/lib/models/User";
 import { Appointment } from "@/lib/models/Appointment";
-
+import { sendBooking } from "./sendBooking";
 interface AppointmentInput {
   name: string;
   email: string;
@@ -14,7 +14,7 @@ interface AppointmentInput {
   postcode: string;
   time: string; // ISO date string
   service: string;
-  paid?: boolean; // may need later
+  paid?: boolean; // added in case needed later
 }
 
 export async function createAppointment(data: AppointmentInput) {
@@ -45,6 +45,14 @@ export async function createAppointment(data: AppointmentInput) {
   });
 
   await appointment.save();
+
+  await sendBooking({
+    name: user.name,
+    email: user.email,
+    service: data.service,
+    dateTime: new Date(data.time),
+    cancellationCode: code,
+  });
 
   return {
     addressLine1: appointment.addressLine1,
