@@ -3,9 +3,9 @@ import { getAppointmentByCode } from "@/actions/getAppointmentByCode";
 import CancelClient from "./CancelClient";
 
 interface Props {
-  params: {
+  params: Promise<{
     code: string;
-  };
+  }>;
 }
 
 export default async function CancelPageWrapper(props: Props) {
