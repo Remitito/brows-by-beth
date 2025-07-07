@@ -5,7 +5,7 @@ interface EnterDetailsProps {
   setForm: Dispatch<SetStateAction<FormDetails>>;
   form: FormDetails | null;
   selectedCity: string;
-  onSubmit: () => void;
+  onSubmit: () => Promise<void> | void;
 }
 
 const EnterDetails: React.FC<EnterDetailsProps> = ({
@@ -15,6 +15,7 @@ const EnterDetails: React.FC<EnterDetailsProps> = ({
   onSubmit,
 }) => {
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,7 +25,7 @@ const EnterDetails: React.FC<EnterDetailsProps> = ({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (
@@ -38,7 +39,16 @@ const EnterDetails: React.FC<EnterDetailsProps> = ({
       return;
     }
 
-    onSubmit();
+    setError("");
+    setIsLoading(true);
+
+    try {
+      await onSubmit();
+    } catch {
+      setError("Submission failed. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -102,13 +112,38 @@ const EnterDetails: React.FC<EnterDetailsProps> = ({
             />
           </div>
 
-          <div className="col-span-full pt-4">
-            <button
-              type="submit"
-              className="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 rounded-lg transition duration-200"
-            >
-              Confirm Booking
-            </button>
+          <div className="col-span-full flex items-center justify-center pt-4">
+            {isLoading ? (
+              <div className="w-full md:w-1/2 flex justify-center py-3">
+                <svg
+                  className="animate-spin h-8 w-8 text-pink-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full md:w-1/2 bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 rounded-lg transition duration-200"
+              >
+                Confirm Booking
+              </button>
+            )}
           </div>
         </form>
       </div>
